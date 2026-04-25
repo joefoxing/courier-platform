@@ -1,0 +1,41 @@
+{
+  "expo": {
+    "name": "Courier Platform Customer",
+    "slug": "courier-platform",
+    "scheme": "courier-platform-customer",
+    "description": "Track deliveries end-to-end with live courier updates and delivery history.",
+    "version": "0.1.0",
+    "runtimeVersion": "0.1.0",
+    "updates": {
+      "enabled": false
+    },
+    "orientation": "portrait",
+    "plugins": [
+      "expo-router",
+      "expo-secure-store"
+    ],
+    "android": {
+      "package": "com.courierplatform.customer",
+      "versionCode": 1
+    },
+    "ios": {
+      "bundleIdentifier": "com.courierplatform.customer",
+      "buildNumber": "1",
+      "supportsTablet": false,
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "extra": {
+      "supportUrl": "https://yourdomain.com/support",
+      "privacyPolicyUrl": "https://yourdomain.com/privacy",
+      "eas": {
+        "projectId": "c35d05a7-cc88-4853-af66-97d012907655"
+      }
+    },
+    "experiments": {
+      "typedRoutes": true
+    },
+    "owner": "joefoxing"
+  }
+}
