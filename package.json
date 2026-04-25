@@ -1,0 +1,55 @@
+{
+  "name": "courier-platform",
+  "private": true,
+  "packageManager": "npm@11.9.0",
+  "scripts": {
+    "pack:shared": "npm --prefix packages/shared run pack:local",
+    "pack:api-client": "npm --prefix packages/api-client run pack:local",
+    "repack:mobile": "npm run pack:shared && npm run pack:api-client",
+    "api:test": "python -m pytest services/api/tests",
+    "api:smoke": "python services/api/tests/smoke_e2e.py",
+    "api:verify-realtime": "python services/api/tests/verify_realtime_multi_instance.py",
+    "api:start": "python services/api/run_api.py",
+    "customer": "npm --prefix apps/customer run start",
+    "customer:export:android": "npm --prefix apps/customer run export:android",
+    "customer:build:preview:android": "npx eas-cli build --platform android --profile preview --non-interactive --project-dir apps/customer",
+    "customer:build:production:android": "npx eas-cli build --platform android --profile production --non-interactive --project-dir apps/customer",
+    "customer:build:preview:ios": "npx eas-cli build --platform ios --profile preview --non-interactive --project-dir apps/customer",
+    "customer:build:production:ios": "npx eas-cli build --platform ios --profile production --non-interactive --project-dir apps/customer",
+    "customer:update:staging": "npx eas-cli update --channel staging --non-interactive --auto --message \"customer staging update\" --platform android --project-dir apps/customer",
+    "customer:update:production": "npx eas-cli update --channel production --non-interactive --auto --message \"customer production update\" --platform android --project-dir apps/customer",
+    "courier": "npm --prefix apps/courier run start",
+    "courier:export:android": "npm --prefix apps/courier run export:android",
+    "courier:build:preview:android": "npx eas-cli build --platform android --profile preview --non-interactive --project-dir apps/courier",
+    "courier:build:production:android": "npx eas-cli build --platform android --profile production --non-interactive --project-dir apps/courier",
+    "courier:build:preview:ios": "npx eas-cli build --platform ios --profile preview --non-interactive --project-dir apps/courier",
+    "courier:build:production:ios": "npx eas-cli build --platform ios --profile production --non-interactive --project-dir apps/courier",
+    "courier:update:staging": "npx eas-cli update --channel staging --non-interactive --auto --message \"courier staging update\" --platform android --project-dir apps/courier",
+    "courier:update:production": "npx eas-cli update --channel production --non-interactive --auto --message \"courier production update\" --platform android --project-dir apps/courier",
+    "docker:up": "docker compose -f infra/docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f infra/docker/docker-compose.yml down",
+    "prepare": "node scripts/postinstall.js 2>/dev/null || echo 'Note: After modifying shared packages, run npm run repack:mobile'",
+    "audit:fix": "npm audit fix --prefix apps/customer && npm audit fix --prefix apps/courier",
+    "audit": "npm audit --prefix apps/customer && npm audit --prefix apps/courier"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "cat .husky/pre-commit"
+    }
+  },
+  "dependencies": {
+    "expo": "^55.0.17",
+    "expo-constants": "~55.0.15",
+    "expo-linking": "~55.0.14",
+    "expo-router": "~55.0.13",
+    "expo-secure-store": "~55.0.13",
+    "expo-status-bar": "~55.0.5",
+    "expo-system-ui": "~55.0.16",
+    "expo-updates": "~55.0.21",
+    "react": "19.2.5",
+    "react-native": "0.83.6",
+    "react-native-safe-area-context": "~5.6.2",
+    "react-native-screens": "~4.23.0"
+  },
+  "version": "1.0.0"
+}
